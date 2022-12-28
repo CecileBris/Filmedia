@@ -5,15 +5,15 @@ Created on Sun Nov 22 21:31:21 2020
 @author: seren
 """
 
-import pandas as pd 
+import pandas as pd
 
 path = input('Chemin des fichiers csv: ')
 
 #importation des csv sous forme de dataframe
-df_movies=pd.read_csv(path + 'IMDb_movies.csv',sep=",",dtype=str)
-df_names=pd.read_csv(path + 'IMDb_names.csv',sep=",",dtype=str)
-df_ratings=pd.read_csv(path + 'IMDb_ratings.csv',sep=",",dtype=str)
-df_title=pd.read_csv(path + 'IMDb_title_principals.csv',sep=",",dtype=str)
+df_movies = pd.read_csv(path + 'IMDb_movies.csv', sep=",", dtype=str)
+df_names = pd.read_csv(path + 'IMDb_names.csv', sep=",", dtype=str)
+df_ratings = pd.read_csv(path + 'IMDb_ratings.csv', sep=",", dtype=str)
+df_title = pd.read_csv(path + 'IMDb_title_principals.csv', sep=",", dtype=str)
 
 
 #creation d'une liste à partir de la colonne titre des films
@@ -42,7 +42,7 @@ a = fusion('actors')
 #création d'une liste avec les identifiants des films, ainsi qu'un dictionnaire associant le titre des films a son identifiant 
 T_id = df_movies['imdb_title_id']
 T_id = list(T_id)
-t_idT = zip(T,T_id)
+t_idT = zip(T, T_id)
 t_idT = dict(t_idT)
 
 #création d'une liste des identifiants du dataframe df_ratings
@@ -68,11 +68,11 @@ females_allages = fusio('females_allages_avg_vote')
     
 #Fusionne les 4 dataframe en un seul :
     
-data = pd.merge(pd.merge(pd.merge(df_movies,df_ratings, on='imdb_title_id'),df_title, on='imdb_title_id'),df_names, on='imdb_name_id')
+data = pd.merge(pd.merge(pd.merge(df_movies, df_ratings, on='imdb_title_id'), df_title, on='imdb_title_id'), df_names, on='imdb_name_id')
 
 #modifie le type de la colonne title en string, pour que cela marche avec les inputs :
     
-data = data.astype({'title':str})
+data = data.astype({'title': str})
 
 #changement de l'index du dataframe data : 
     
@@ -136,7 +136,7 @@ def info_actors(Name):
     
     """
     
-    bio = data_name.loc[Name,'bio'] #Appel la valeur de la colonne bio et de la ligne name 
+    bio = data_name.loc[Name, 'bio'] #Appel la valeur de la colonne bio et de la ligne name 
     bio = list(bio) #converti en liste 
     bio = list(set(bio)) #supprime les doublons
     
